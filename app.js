@@ -1,8 +1,10 @@
 const path = require('path');
 
 const express = require('express');
-const errorController = require('./controllers/error');
 const bodyParser = require('body-parser');
+
+const errorController = require('./controllers/error');
+const db = require('./util/database');
 
 const app = express();
 
@@ -21,3 +23,14 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 app.listen(3000);
+
+//You can use then here because we are using a pool that has promises in the database.js file
+// example code below
+// db.execute('SELECT * FROM products')
+//   .then(result => {
+//     console.log(result[0], result[1]);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+//remember you need to move about the app.listen line to use it
