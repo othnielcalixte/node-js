@@ -108,7 +108,7 @@ exports.postCartDeleteProduct = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.postOder = (req, res, next) => {
+exports.postOrder = (req, res, next) => {
   let fetchedCart;
   req.user
     .getCart()
@@ -122,7 +122,7 @@ exports.postOder = (req, res, next) => {
         .then(order => {
           order.addProducts(
             products.map(product => {
-              product.oderItem = { quantity: product.CartItem.quantity };
+              product.orderItem = { quantity: product.CartItem.quantity };
               return product;
             })
           );
